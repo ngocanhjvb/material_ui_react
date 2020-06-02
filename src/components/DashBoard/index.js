@@ -3,6 +3,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import {useStyles} from "./style";
 import clsx from 'clsx';
+import {Box} from "@material-ui/core";
 
 const DashBoard = props => {
 
@@ -16,13 +17,15 @@ const DashBoard = props => {
             <Header open={open} onToggleDrawer={setOpen}/>
             <div className={classes.wrapper}>
                 <Sidebar open={open} onToggleDrawer={setOpen}/>
-                <div
+                <Box
+                    border={1}
+                    borderColor="primary.main"
                     className={clsx(classes.wrapperContent, {
                         [classes.shiftLeft]: !open,
                     })}
                 >
                     {children}
-                </div>
+                </Box>
             </div>
         </>
     );

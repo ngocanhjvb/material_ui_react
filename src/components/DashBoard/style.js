@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     wrapper: {
         display: 'flex',
         flexDirection: 'row',
-        height: '100vh',
+        height: '100%'
     },
     wrapperContent: {
         width: '100%',
@@ -14,6 +14,8 @@ export const useStyles = makeStyles((theme) => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        margin:4,
+        height: '100%'
     },
     shiftLeft: {
         marginLeft: -240,

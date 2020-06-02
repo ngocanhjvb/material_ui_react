@@ -27,7 +27,7 @@ const Sidebar = props => {
                         <List
                             component="nav"
                             subheader={
-                                <ListSubheader component="div" id="nested-list-subheader">
+                                <ListSubheader component="div" id="nested-list-subheader" className={classes.subHeader}>
                                     {group.name}
                                 </ListSubheader>
                             }
