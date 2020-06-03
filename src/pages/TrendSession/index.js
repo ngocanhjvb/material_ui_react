@@ -10,13 +10,13 @@ import {
     BarChart,
     Bar,
     LabelList,
-    PieChart,
-    Pie
 } from "recharts";
-import { DateRange } from 'react-date-range';
+import {Box} from "@material-ui/core";
 import {useState} from 'react'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import {useStyles} from "./style";
+import DateTimeRange from "../../components/DateTimeRange";
 
 
 const TrendSession = props => {
@@ -58,14 +58,13 @@ const TrendSession = props => {
         }
     ];
 
-
+    const classes = useStyles();
 
     //date time range
 
-    let date = new Date()
-    let endDate = new Date().setDate(date.getDate() + 7)
+    let endDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
-    const [state, setState] = useState([
+    const [timeRange, setTime] = useState([
         {
             startDate: new Date(),
             endDate: endDate,
@@ -73,22 +72,23 @@ const TrendSession = props => {
         }
     ]);
 
-
+    // popover
 
 
 
 
     return (
-
-
-
         <div className="App">
-            <DateRange
-                editableDateInputs={false}
-                onChange={item => setState([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={state}
-            />
+            <Box>
+
+                <DateTimeRange
+                    setTime={setTime}
+                    timeRange={timeRange}
+                    classes={classes}
+                />
+            </Box>
+
+
             <LineChart width={1500} height={250} data={data}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="day"/>
@@ -97,7 +97,6 @@ const TrendSession = props => {
                 <Legend/>
                 <Line type="monotone" dataKey="uv" stroke="#036"/>
             </LineChart>
-            {/*<hr/>*/}
             <BarChart
                 width={1500}
                 height={300}
@@ -113,11 +112,6 @@ const TrendSession = props => {
                     <LabelList dataKey="uv" position="right"/>
                 </Bar>
             </BarChart>
-            {/*<PieChart width={730} height={250}>*/}
-            {/*    <Pie data={data} dataKey="uv" nameKey="name"*/}
-            {/*         fill="#82ca9d" label/>*/}
-            {/*</PieChart>*/}
-
         </div>
     );
 };
