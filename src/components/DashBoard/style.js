@@ -15,7 +15,8 @@ export const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         margin:4,
-        height: '100%'
+        height: '100%',
+        backgroundColor:'#D4E0F2',
     },
     shiftLeft: {
         marginLeft: -240,

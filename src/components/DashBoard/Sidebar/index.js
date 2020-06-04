@@ -9,7 +9,7 @@ const Sidebar = props => {
 
     const classes = useStyles();
 
-    const {open, onToggleDrawer} = props
+    const {open, onToggleDrawer} = props;
 
     const handleToggleDrawer = () => {
         onToggleDrawer(!open)
@@ -25,6 +25,7 @@ const Sidebar = props => {
                     );
                     return (
                         <List
+                            key={group.name}
                             component="nav"
                             subheader={
                                 <ListSubheader component="div" id="nested-list-subheader" className={classes.subHeader}>

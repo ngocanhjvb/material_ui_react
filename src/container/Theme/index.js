@@ -8,7 +8,11 @@ const theme = createMuiTheme({
     },
     groupBackGroupColor:{
         color:'#F6F6F6'
-    }
+    },
+    buttonStyle: {
+        backgroundColor:'#D0DEF0',
+        color:"#000"
+    },
 });
 
 export default theme

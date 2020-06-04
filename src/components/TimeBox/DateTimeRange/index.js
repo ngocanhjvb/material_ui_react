@@ -1,8 +1,10 @@
 import React from 'react';
-import {Button, Popover} from "@material-ui/core";
+import {Button, Popover,Box} from "@material-ui/core";
 import {DateRange} from "react-date-range";
-import {convertTimeString} from "../../helpers";
+import {convertTimeString} from "../../../helpers";
 import {useStyles} from "./style";
+import Icon from "@material-ui/core/Icon";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 
 const DateTimeRange = props => {
@@ -20,17 +22,26 @@ const DateTimeRange = props => {
     };
 
     const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    const id = open ? 'time-range-popover' : undefined;
 
     const classes = useStyles();
 
 
     return (
         <>
-            <Button aria-describedby={id} variant="contained" onClick={handleClick} className={classes.dateTimeBox}>
-                {'表示範囲'}
-            </Button>
-            <span>{convertTimeString(timeRange[0].startDate) + ' - ' + convertTimeString(timeRange[0].endDate)}</span>
+            <Box>
+                <Button
+                    aria-describedby={id}
+                    variant="contained"
+                    size='small'
+                    onClick={handleClick}
+                    className={classes.dateTimeRangeButton}
+                >
+                    {'表示範囲'}
+                    <ArrowDropDownIcon style={{ fontSize: 15 }}/>
+                </Button>
+                <span>{convertTimeString(timeRange[0].startDate) + ' - ' + convertTimeString(timeRange[0].endDate)}</span>
+            </Box>
             <Popover
                 id={id}
                 open={open}

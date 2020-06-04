@@ -47,3 +47,26 @@ export const ADMIN_ROUTES = [
     }
 ]
 
+export const TIME_FILTER = [
+    {
+        name:'時間別',
+        value:'time'
+    },
+    {
+        name:'曜日別',
+        value:'da'
+    },
+    {
+        name:'日別',
+        value:'day'
+    },
+    {
+        name:'週別',
+        value:'week'
+    },
+    {
+        name:'月別',
+        value:'month'
+    }
+];
+

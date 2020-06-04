@@ -19,38 +19,23 @@ const Header = props => {
     // hook
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleProfileMenuClose = () => {
-        setAnchorEl(null);
-    };
+    // const handleProfileMenuOpen = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
+    //
+    // const handleProfileMenuClose = () => {
+    //     setAnchorEl(null);
+    // };
 
     const handleToggleDrawer = () => {
         onToggleDrawer(!open)
     };
 
-    const menuId = 'primary-search-account-menu';
-
-    const isMenuOpen = Boolean(anchorEl);
-
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-            id={menuId}
-            keepMounted
-            transformOrigin={{vertical: 'top', horizontal: 'right'}}
-            open={isMenuOpen}
-            onClose={handleProfileMenuClose}
-        >
-            <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleProfileMenuClose}>My account</MenuItem>
-        </Menu>
-    );
+    // const menuId = 'primary-search-account-menu';
+    //
+    // const isMenuOpen = Boolean(anchorEl);
 
 
     return (
@@ -71,20 +56,19 @@ const Header = props => {
                     </Typography>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle/>
-                        </IconButton>
+                        {/*<IconButton*/}
+                        {/*    edge="end"*/}
+                        {/*    aria-label="account of current user"*/}
+                        {/*    aria-controls={menuId}*/}
+                        {/*    aria-haspopup="true"*/}
+                        {/*    onClick={handleProfileMenuOpen}*/}
+                        {/*    color="inherit"*/}
+                        {/*>*/}
+                        {/*    <AccountCircle/>*/}
+                        {/*</IconButton>*/}
                     </div>
                 </Toolbar>
             </AppBar>
-            {renderMenu}
         </div>
     );
 };

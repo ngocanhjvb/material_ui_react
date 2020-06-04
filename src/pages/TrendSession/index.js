@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import {Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, Tooltip, XAxis, YAxis,} from "recharts";
-import {Box} from "@material-ui/core";
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import DateTimeRange from "../../components/DateTimeRange";
-import TimeFilter from "../../components/TimeFilter";
-import {useStyles} from "./style";
+import TimeBox from "../../components/TimeBox";
 
 
 const TrendSession = props => {
@@ -61,22 +58,14 @@ const TrendSession = props => {
 
     const [timeFilter, setTimeFilter] = useState('day');
 
-    const classes = useStyles()
-
     return (
         <div className="App">
-            <Box className={classes.boxWrap}>
-                <DateTimeRange
-                    setTimeRange={setTime}
-                    timeRange={timeRange}
-                />
-                <TimeFilter
-                    timeFilter={timeFilter}
-                    setTimeFilter={setTimeFilter}
-                />
-            </Box>
-
-
+            <TimeBox
+                setTime={setTime}
+                timeRange={timeRange}
+                timeFilter={timeFilter}
+                setTimeFilter={setTimeFilter}
+            />
             <LineChart width={1500} height={250} data={data}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="day"/>

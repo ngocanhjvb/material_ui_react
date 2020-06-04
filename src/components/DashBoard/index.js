@@ -19,7 +19,7 @@ const DashBoard = props => {
                 <Sidebar open={open} onToggleDrawer={setOpen}/>
                 <Box
                     border={1}
-                    borderColor="primary.main"
+                    borderColor="#99bbe8"
                     className={clsx(classes.wrapperContent, {
                         [classes.shiftLeft]: !open,
                     })}
