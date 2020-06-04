@@ -2,10 +2,12 @@ import React from 'react';
 import {Button, Popover} from "@material-ui/core";
 import {DateRange} from "react-date-range";
 import {convertTimeString} from "../../helpers";
+import {useStyles} from "./style";
+
 
 const DateTimeRange = props => {
 
-    const {setTime, timeRange,classes} = props;
+    const {setTimeRange, timeRange} = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -19,6 +21,9 @@ const DateTimeRange = props => {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
+
+    const classes = useStyles();
+
 
     return (
         <>
@@ -42,7 +47,7 @@ const DateTimeRange = props => {
             >
                 <DateRange
                     editableDateInputs={false}
-                    onChange={item => setTime([item.selection])}
+                    onChange={item => setTimeRange([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={timeRange}
                 />

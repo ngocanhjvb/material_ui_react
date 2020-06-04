@@ -1,22 +1,11 @@
-import React from 'react';
-import {
-    LineChart,
-    CartesianGrid,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Legend,
-    Line,
-    BarChart,
-    Bar,
-    LabelList,
-} from "recharts";
+import React, {useState} from 'react';
+import {Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, Tooltip, XAxis, YAxis,} from "recharts";
 import {Box} from "@material-ui/core";
-import {useState} from 'react'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import {useStyles} from "./style";
 import DateTimeRange from "../../components/DateTimeRange";
+import TimeFilter from "../../components/TimeFilter";
+import {useStyles} from "./style";
 
 
 const TrendSession = props => {
@@ -58,11 +47,9 @@ const TrendSession = props => {
         }
     ];
 
-    const classes = useStyles();
-
     //date time range
 
-    let endDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    let endDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
     const [timeRange, setTime] = useState([
         {
@@ -72,19 +59,20 @@ const TrendSession = props => {
         }
     ]);
 
-    // popover
+    const [timeFilter, setTimeFilter] = useState('day');
 
-
-
+    const classes = useStyles()
 
     return (
         <div className="App">
-            <Box>
-
+            <Box className={classes.boxWrap}>
                 <DateTimeRange
-                    setTime={setTime}
+                    setTimeRange={setTime}
                     timeRange={timeRange}
-                    classes={classes}
+                />
+                <TimeFilter
+                    timeFilter={timeFilter}
+                    setTimeFilter={setTimeFilter}
                 />
             </Box>
 
