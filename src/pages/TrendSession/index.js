@@ -3,6 +3,9 @@ import {Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, Toolti
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import TimeBox from "../../components/TimeBox";
+import TitlePanel from "../../components/TitlePanel";
+import {Box} from "@material-ui/core";
+import Overview from "../../components/Overview";
 
 
 const TrendSession = props => {
@@ -59,37 +62,43 @@ const TrendSession = props => {
     const [timeFilter, setTimeFilter] = useState('day');
 
     return (
-        <div className="App">
+        <>
             <TimeBox
                 setTime={setTime}
                 timeRange={timeRange}
                 timeFilter={timeFilter}
                 setTimeFilter={setTimeFilter}
             />
-            <LineChart width={1500} height={250} data={data}>
-                <CartesianGrid strokeDasharray="3 3"/>
-                <XAxis dataKey="day"/>
-                <YAxis/>
-                <Tooltip/>
-                <Legend/>
-                <Line type="monotone" dataKey="uv" stroke="#036"/>
-            </LineChart>
-            <BarChart
-                width={1500}
-                height={300}
-                data={data}
-                layout="vertical"
-                margin={{top: 5, right: 30, left: 20, bottom: 5}}
-            >
-                <XAxis type="number"/>
-                <YAxis type="category" dataKey="name"/>
-                <CartesianGrid strokeDasharray="3 3"/>
-                <Tooltip/>
-                <Bar dataKey="uv" fill="#036">
-                    <LabelList dataKey="uv" position="right"/>
-                </Bar>
-            </BarChart>
-        </div>
+            <Box p={1}>
+                <TitlePanel>すべてのユーザーのセッション数</TitlePanel>
+                <LineChart width={1500} height={250} data={data}>
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="day"/>
+                    <YAxis/>
+                    <Tooltip/>
+                    <Legend/>
+                    <Line type="monotone" dataKey="uv" stroke="#036"/>
+                </LineChart>
+
+                <Overview>0セッション  | 0.0セッション/日</Overview>
+
+                <BarChart
+                    width={1500}
+                    height={300}
+                    data={data}
+                    layout="vertical"
+                    margin={{top: 5, right: 30, left: 20, bottom: 5}}
+                >
+                    <XAxis type="number"/>
+                    <YAxis type="category" dataKey="name"/>
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <Tooltip/>
+                    <Bar dataKey="uv" fill="#036">
+                        <LabelList dataKey="uv" position="right"/>
+                    </Bar>
+                </BarChart>
+            </Box>
+        </>
     );
 };
 

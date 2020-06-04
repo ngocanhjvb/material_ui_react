@@ -9,14 +9,12 @@ export const useStyles = makeStyles((theme) => ({
     },
     wrapperContent: {
         width: '100%',
-        padding: 10,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        margin:4,
+        margin:5,
         height: '100%',
-        backgroundColor:'#D4E0F2',
     },
     shiftLeft: {
         marginLeft: -240,
