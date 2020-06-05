@@ -5,6 +5,11 @@ import AdminLayOutRoute from "../components/AdminLayOutRoute";
 import {ThemeProvider} from '@material-ui/core/styles';
 import theme from "./Theme";
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {Provider} from "react-redux";
+import configureStore from "../configureStore";
+
+const store = configureStore();
+
 function App() {
 
     const renderAdminRoute = () => {
@@ -24,16 +29,17 @@ function App() {
     }
 
     return (
-
-        <BrowserRouter>
-            <ThemeProvider theme={theme}>
-                <CssBaseline>
-                    <Switch>
-                        {renderAdminRoute()}
-                    </Switch>
-                </CssBaseline>
-            </ThemeProvider>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline>
+                        <Switch>
+                            {renderAdminRoute()}
+                        </Switch>
+                    </CssBaseline>
+                </ThemeProvider>
+            </BrowserRouter>
+        </Provider>
 
     );
 }

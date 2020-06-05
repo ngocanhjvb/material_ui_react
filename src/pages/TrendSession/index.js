@@ -1,51 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, Tooltip, XAxis, YAxis,} from "recharts";
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import TimeBox from "../../components/TimeBox";
-import TitlePanel from "../../components/TitlePanel";
 import {Box} from "@material-ui/core";
 import Overview from "../../components/Overview";
+import axiosService from "../../services/axiosService";
+import loadDataTimeFilter from "../../actions/loadDataTimeFilter";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const TrendSession = props => {
-    const data = [
-        {
-            "name": "日曜日",
-            "day": "日",
-            "uv": 40,
-        },
-        {
-            "name": "月曜日",
-            "day": "月",
-            "uv": 30,
-        },
-        {
-            "name": "火曜日",
-            "day": "火",
-            "uv": 30,
-        },
-        {
-            "name": "水曜日",
-            "day": "水",
-            "uv": 50,
-        },
-        {
-            "name": "木曜日",
-            "day": "木",
-            "uv": 40,
-        },
-        {
-            "name": "金曜日",
-            "day": "金",
-            "uv": 10,
-        },
-        {
-            "name": "土曜日",
-            "day": "土",
-            "uv": 10,
-        }
-    ];
 
     //date time range
 
@@ -61,6 +26,38 @@ const TrendSession = props => {
 
     const [timeFilter, setTimeFilter] = useState('day');
 
+    // Dùng state của react hook
+
+
+    // const [data, setData] = useState([]);
+    //
+    // useEffect(() => {
+    //     axiosService.get(timeFilter)
+    //         .then((success) => {
+    //             setData(success.data)
+    //         }).catch((error) => {
+    //         console.log(error)
+    //     })
+    // }, [timeFilter]);
+    //
+    // console.log(data)
+
+    // Dùng redux với global state
+
+    const data = useSelector(state => state.trendSession.listItem);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadDataTimeFilter(timeFilter));
+    }, [timeFilter]);
+
+    // console.log(data)
+
+
+
+
+
     return (
         <>
             <TimeBox
@@ -70,17 +67,17 @@ const TrendSession = props => {
                 setTimeFilter={setTimeFilter}
             />
             <Box p={1}>
-                <TitlePanel>すべてのユーザーのセッション数</TitlePanel>
+                <Overview>すべてのユーザーのセッション数</Overview>
                 <LineChart width={1500} height={250} data={data}>
                     <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="day"/>
+                    <XAxis dataKey="name"/>
                     <YAxis/>
                     <Tooltip/>
                     <Legend/>
-                    <Line type="monotone" dataKey="uv" stroke="#036"/>
+                    <Line type="monotone" dataKey="value" stroke="#036"/>
                 </LineChart>
 
-                <Overview>0セッション  | 0.0セッション/日</Overview>
+                <Overview>0セッション | 0.0セッション/日</Overview>
 
                 <BarChart
                     width={1500}
@@ -93,7 +90,7 @@ const TrendSession = props => {
                     <YAxis type="category" dataKey="name"/>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <Tooltip/>
-                    <Bar dataKey="uv" fill="#036">
+                    <Bar dataKey="value" fill="#036">
                         <LabelList dataKey="uv" position="right"/>
                     </Bar>
                 </BarChart>

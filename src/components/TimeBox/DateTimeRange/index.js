@@ -3,7 +3,6 @@ import {Button, Popover,Box} from "@material-ui/core";
 import {DateRange} from "react-date-range";
 import {convertTimeString} from "../../../helpers";
 import {useStyles} from "./style";
-import Icon from "@material-ui/core/Icon";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 
