@@ -7,6 +7,7 @@ import theme from "./Theme";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {Provider} from "react-redux";
 import configureStore from "../configureStore";
+import GlobalLoading from "../components/GlobalLoading";
 
 const store = configureStore();
 
@@ -33,6 +34,7 @@ function App() {
             <BrowserRouter>
                 <ThemeProvider theme={theme}>
                     <CssBaseline>
+                        <GlobalLoading/>
                         <Switch>
                             {renderAdminRoute()}
                         </Switch>

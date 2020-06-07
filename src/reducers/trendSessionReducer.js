@@ -4,7 +4,18 @@ const initial = {
 
 const trendSessionReducer = (state = initial, action) => {
     switch (action.type) {
-        case 'CHANGE_TIME_FILTER': {
+        case 'FETCH_DATA': {
+            return {
+                ...state
+            }
+        }
+        case 'FETCH_DATA_SUCCESS': {
+            return {
+                ...state,
+                listItem: action.payload
+            }
+        }
+        case 'FETCH_DATA_ERROR': {
             return {
                 ...state,
                 listItem: action.payload

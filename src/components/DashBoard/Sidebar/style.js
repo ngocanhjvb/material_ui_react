@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         width: drawerWidth,
         maxWidth: drawerWidth,
-        zIndex: 99,
+        zIndex: 98,
         height: "100%",
         position: 'relative'
     },
