@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, Tooltip, XAxis, YAxis,} from "recharts";
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
 import TimeBox from "../../components/TimeBox";
 import {Box} from "@material-ui/core";
 import Overview from "../../components/Overview";
-import axiosService from "../../services/axiosService";
 import loadDataTimeFilter from "../../actions/loadDataTimeFilter";
 import {useDispatch, useSelector} from "react-redux";
 import AreaChartVa from "../../components/Charts/AreaChartVa";
@@ -28,37 +24,13 @@ const TrendSession = props => {
 
     const [timeFilter, setTimeFilter] = useState('day');
 
-    // Dùng state của react hook
-
-
-    // const [data, setData] = useState([]);
-    //
-    // useEffect(() => {
-    //     axiosService.get(timeFilter)
-    //         .then((success) => {
-    //             setData(success.data)
-    //         }).catch((error) => {
-    //         console.log(error)
-    //     })
-    // }, [timeFilter]);
-    //
-    // console.log(data)
-
-    // Dùng redux với global state
-
     const data = useSelector(state => state.trendSession.listItem);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadDataTimeFilter(timeFilter));
-    }, [timeFilter]);
-
-    // console.log(data)
-
-
-
-
+    }, [timeFilter,dispatch]);
 
     return (
         <>
@@ -82,7 +54,5 @@ const TrendSession = props => {
         </>
     );
 };
-
-LineChart.propTypes = {};
 
 export default TrendSession;
