@@ -8,6 +8,8 @@ import Overview from "../../components/Overview";
 import axiosService from "../../services/axiosService";
 import loadDataTimeFilter from "../../actions/loadDataTimeFilter";
 import {useDispatch, useSelector} from "react-redux";
+import AreaChartVa from "../../components/Charts/AreaChartVa";
+import BarChartVa from "../../components/Charts/BarChartVa";
 
 
 const TrendSession = props => {
@@ -68,32 +70,14 @@ const TrendSession = props => {
             />
             <Box p={1}>
                 <Overview>すべてのユーザーのセッション数</Overview>
-                <LineChart width={1500} height={250} data={data}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="name"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend/>
-                    <Line type="monotone" dataKey="value" stroke="#036"/>
-                </LineChart>
+
+                <AreaChartVa data={data}/>
 
                 <Overview>0セッション | 0.0セッション/日</Overview>
 
-                <BarChart
-                    width={1500}
-                    height={300}
-                    data={data}
-                    layout="vertical"
-                    margin={{top: 5, right: 30, left: 20, bottom: 5}}
-                >
-                    <XAxis type="number"/>
-                    <YAxis type="category" dataKey="name"/>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <Tooltip/>
-                    <Bar dataKey="value" fill="#036">
-                        <LabelList dataKey="uv" position="right"/>
-                    </Bar>
-                </BarChart>
+                <BarChartVa data={data}/>
+
+
             </Box>
         </>
     );
