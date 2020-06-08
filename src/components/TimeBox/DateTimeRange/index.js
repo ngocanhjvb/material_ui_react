@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button, Popover,Box} from "@material-ui/core";
+import {Button, Popover, Box} from "@material-ui/core";
 import {DateRange} from "react-date-range";
 import {convertTimeString} from "../../../helpers";
 import {useStyles} from "./style";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 
 const DateTimeRange = props => {
@@ -30,14 +31,15 @@ const DateTimeRange = props => {
         <>
             <Box>
                 <Button
+                    startIcon={<DateRangeIcon/>}
                     aria-describedby={id}
                     variant="contained"
                     size='small'
                     onClick={handleClick}
                     className={classes.dateTimeRangeButton}
+                    endIcon={<ArrowDropDownIcon style={{fontSize: 15}}/>}
                 >
                     {'表示範囲'}
-                    <ArrowDropDownIcon style={{ fontSize: 15 }}/>
                 </Button>
                 <span>{convertTimeString(timeRange[0].startDate) + ' - ' + convertTimeString(timeRange[0].endDate)}</span>
             </Box>

@@ -1,34 +1,31 @@
 import axiosService from "../services/axiosService";
+import * as trendSessionAction from "./trendSession";
+import * as uiAction from "./ui";
 
 const loadDataTimeFilter = (url) => {
 
     return (dispatch) => {
-        dispatch({
-            type: 'FETCH_DATA'
-        })
+        dispatch(trendSessionAction.fetchTrendSession());
 
-        dispatch({
-            type: 'SHOW_LOADING'
-        })
+        dispatch(uiAction.showLoading());
+
         axiosService.get(url).then((success) => {
-            dispatch({
-                type: 'FETCH_DATA_SUCCESS',
-                payload: success.data
-            });
+
+            dispatch(trendSessionAction.fetchTrendSessionSuccess(success.data));
+
             setTimeout(() =>{
-                dispatch({
-                    type: 'HIDE_LOADING'
-                })
+
+                dispatch(uiAction.hideLoading())
+
             },300)
         }).catch((error) => {
-            dispatch({
-                type: 'FETCH_DATA_ERROR',
-                payload: error
-            });
+
+            dispatch(trendSessionAction.fetchTrendSessionError(error));
+
             setTimeout(() =>{
-                dispatch({
-                    type: 'HIDE_LOADING'
-                })
+
+                dispatch(uiAction.hideLoading())
+
             },300)
 
         })
