@@ -1,6 +1,6 @@
 import axiosService from "../services/axiosService";
 import * as trendSessionAction from "./trendSession";
-import * as uiAction from "./ui";
+import * as uiAction from "./common";
 
 const loadDataTimeFilter = (url) => {
 
